@@ -36,7 +36,7 @@ parameters['tunex']		= '619'
 parameters['tuney']		= '624'
 
 parameters['lattice_start'] 	= 'BWSH65'
-parameters['n_macroparticles']	= int (10)#int(5E5)
+parameters['n_macroparticles']	= int(5E5)
 
 # PS Injection 1.4 GeV
 parameters['gamma'] 	        = 2.49038064
@@ -54,7 +54,7 @@ parameters['macrosize']		= parameters['intensity']/float(parameters['n_macropart
 c 				= 299792458
 parameters['sig_z'] 	= (parameters['beta'] * c * parameters['blength'])/4.
 
-parameters['turns_max'] = int(10)#int(2200)
+parameters['turns_max'] =  int(2200)
 tu1 = range(-1, parameters['turns_max'], 200)
 tu2 = range(50, 100, 10) 
 tu3 = range(1, 50)

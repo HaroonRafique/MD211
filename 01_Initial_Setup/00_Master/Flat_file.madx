@@ -3,7 +3,6 @@ TITLE, "Flat file generation for PTC-PyORBIT";
 /***********************************************************************
  *                            USER SETTINGS
  **********************************************************************/
-!RFV := 0.021;
 
 quad_error = 0;	! Add quadrupolar error on QDN72
 
@@ -12,7 +11,7 @@ use_pfw = 0;	!Match tunes with PFW or LEQ
 match_chroma = 0;
 
 BCMS = 0;		!Harmonic 9 for BCMS, 7 for Standard LHC beams
-LIU = 1;		!LIU KE = 2GeV, pre-LIU KE = 1.4GeV
+LIU = 0;		!LIU KE = 2GeV, pre-LIU KE = 1.4GeV
 
 start_lattice_marker = 0;
 
@@ -50,7 +49,7 @@ endedit;
 
 seqedit, sequence=PS;
 	flatten;
-	!cycle , start=PR.BWSV64;
+	!cycle , start=PR.BWSV85;
 	cycle , start=PR.BWSH65;
 	flatten;
 endedit;

@@ -14,7 +14,7 @@ b = int(os.getcwd()[-1])
 case = ['1p3', '1p6', '1p9', '2p3', '2p6']
 eps_z = [1.3, 1.6, 1.9, 2.3, 2.6]
 delta = [0.8E-3, 1.0E-3, 1.23E-3, 1.5E-3, 1.7E-3]
-voltages = [0.01225, 0.0189, 0.03043, 0.0455, 0.0576]
+voltages = [0.01225, 0.0189, 0.0304, 0.0455, 0.0591]
 
 parameters = {}
 
@@ -28,8 +28,11 @@ else:
         parameters['epsn_y']	= 2.4E-6
 
 parameters['Beam']		= case[b]
+parameters['dpp_rms']		= delta[b]
+parameters['rf_voltage']	= voltages[b]
+parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+case[b]+'_eVs.mat'
 
-parameters['tunex']		= '621'
+parameters['tunex']		= '619'
 parameters['tuney']		= '624'
 
 parameters['lattice_start'] 	= 'BWSH65'
@@ -40,8 +43,6 @@ parameters['gamma'] 	        = 2.49038064
 parameters['bunch_length']	= 210E-9
 parameters['blength']		= 210E-9
 
-parameters['dpp_rms']		= delta[b]
-parameters['rf_voltage']	= voltages[b]
 
 parameters['beta'] 		= np.sqrt(parameters['gamma']**2-1)/parameters['gamma']
 parameters['LongitudinalJohoParameter'] = 1.2
@@ -50,7 +51,6 @@ parameters['TransverseCut']	= 5
 parameters['circumference']	= 2*np.pi*100
 parameters['phi_s']		= 0
 parameters['macrosize']		= parameters['intensity']/float(parameters['n_macroparticles'])
-parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_Nominal_PreLIU.mat'
 c 				= 299792458
 parameters['sig_z'] 	= (parameters['beta'] * c * parameters['blength'])/4.
 
@@ -66,7 +66,7 @@ parameters['turns_update'] = sorted(tu)
 switches = {
 	'CreateDistn':		True,
 	'Update_Twiss':		False,  # Needed to save optics turn-by-turn
-	'Space_Charge': 	True,
+	'Space_Charge': 	False,
 	'GridSizeX': 128,
 	'GridSizeY': 128,
 	'GridSizeZ': 64
