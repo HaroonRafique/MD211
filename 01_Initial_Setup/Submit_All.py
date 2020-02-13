@@ -36,7 +36,7 @@ if NoSC_Scan:
 		print '--------------------------------------------------------------------------------------------'
 		print '\t Submitting HPC-Batch simulation:', loc
 		print '--------------------------------------------------------------------------------------------'
-		dir_ = master_dir + loc +'/PyORBIT'
+		dir_ = master_dir + loc 
 		make_command = 'python Make_SLURM_submission_script.py'
 		submit_command = 'sbatch SLURM_submission_script.sh'
 		os.chdir(dir_)
@@ -48,7 +48,7 @@ if SC_Scan:
 		print '--------------------------------------------------------------------------------------------'
 		print '\t Submitting HPC-Batch simulation:', loc
 		print '--------------------------------------------------------------------------------------------'
-		dir_ = master_dir + loc +'/PyORBIT'
+		dir_ = master_dir + loc 
 		make_command = 'python Make_SLURM_submission_script.py'
 		submit_command = 'sbatch SLURM_submission_script.sh'
 		os.chdir(dir_)
