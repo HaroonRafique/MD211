@@ -68,7 +68,7 @@ parameters['turns_update'] = sorted(tu)
 switches = {
 	'CreateDistn':		True,
 	'Update_Twiss':		False,  # Needed to save optics turn-by-turn
-	'Space_Charge': 	False,
+	'Space_Charge': 	True,
 	'GridSizeX': 128,
 	'GridSizeY': 128,
 	'GridSizeZ': 64
