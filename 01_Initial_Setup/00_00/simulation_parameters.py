@@ -22,15 +22,17 @@ if a is 0:
         parameters['intensity']	= 1.6E12
         parameters['epsn_x']	= 1.87E-6
         parameters['epsn_y']	= 1.83E-6
+        str_intensity           = '1p6E12'
 else:
         parameters['intensity']	= 2.0E12
         parameters['epsn_x']	= 2.3E-6
         parameters['epsn_y']	= 2.4E-6
+        str_intensity           = '2E12'
 
 parameters['Beam']		= case[b]
 parameters['dpp_rms']		= delta[b]
 parameters['rf_voltage']	= voltages[b]
-parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+case[b]+'_eVs.mat'
+parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+str_intensity+'_'+case[b]+'_eVs.mat'
 
 parameters['tunex']		= '619'
 parameters['tuney']		= '624'
@@ -54,7 +56,7 @@ parameters['macrosize']		= parameters['intensity']/float(parameters['n_macropart
 c 				= 299792458
 parameters['sig_z'] 	= (parameters['beta'] * c * parameters['blength'])/4.
 
-parameters['turns_max'] =  int(2200)
+parameters['turns_max'] = int(2200)
 tu1 = range(-1, parameters['turns_max'], 200)
 tu2 = range(50, 100, 10) 
 tu3 = range(1, 50)

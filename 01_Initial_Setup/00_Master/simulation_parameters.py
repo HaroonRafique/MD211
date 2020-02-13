@@ -22,15 +22,17 @@ if a is 0:
         parameters['intensity']	= 1.6E12
         parameters['epsn_x']	= 1.87E-6
         parameters['epsn_y']	= 1.83E-6
+        str_intensity           = '1p6E12'
 else:
         parameters['intensity']	= 2.0E12
         parameters['epsn_x']	= 2.3E-6
         parameters['epsn_y']	= 2.4E-6
+        str_intensity           = '2E12'
 
 parameters['Beam']		= case[b]
 parameters['dpp_rms']		= delta[b]
 parameters['rf_voltage']	= voltages[b]
-parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+case[b]+'_eVs.mat'
+parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+str_intensity+'_'+case[b]+'_eVs.mat'
 
 parameters['tunex']		= '619'
 parameters['tuney']		= '624'
