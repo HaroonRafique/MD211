@@ -4,17 +4,29 @@ master_dir = os.getcwd()
 
 locations = []
 
-locations.append('/00_00')
-locations.append('/00_01')
-locations.append('/00_02')
-locations.append('/00_03')
-locations.append('/00_04')
+# ~ locations.append('/00_00')
+# ~ locations.append('/00_01')
+# ~ locations.append('/00_02')
+# ~ locations.append('/00_03')
+# ~ locations.append('/00_04')
 
-locations.append('/01_00')
-locations.append('/01_01')
-locations.append('/01_02')
-locations.append('/01_03')
-locations.append('/01_04')
+# ~ locations.append('/00_10')
+# ~ locations.append('/00_11')
+# ~ locations.append('/00_12')
+# ~ locations.append('/00_13')
+# ~ locations.append('/00_14')
+
+locations.append('/NoSC_00')
+locations.append('/NoSC_01')
+locations.append('/NoSC_02')
+locations.append('/NoSC_03')
+locations.append('/NoSC_04')
+
+locations.append('/NoSC_10')
+locations.append('/NoSC_11')
+locations.append('/NoSC_12')
+locations.append('/NoSC_13')
+locations.append('/NoSC_14')
 
 for loc in locations:
 	print '---------------------------------------------------------------------------'
