@@ -4,17 +4,17 @@ master_dir = os.getcwd()
 
 locations = []
 
-# ~ locations.append('/00_00')
-# ~ locations.append('/00_01')
-# ~ locations.append('/00_02')
-# ~ locations.append('/00_03')
-# ~ locations.append('/00_04')
+locations.append('/00_00')
+locations.append('/00_01')
+locations.append('/00_02')
+locations.append('/00_03')
+locations.append('/00_04')
 
-# ~ locations.append('/00_10')
-# ~ locations.append('/00_11')
-# ~ locations.append('/00_12')
-# ~ locations.append('/00_13')
-# ~ locations.append('/00_14')
+locations.append('/00_10')
+locations.append('/00_11')
+locations.append('/00_12')
+locations.append('/00_13')
+locations.append('/00_14')
 
 locations.append('/NoSC_00')
 locations.append('/NoSC_01')
