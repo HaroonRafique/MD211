@@ -271,8 +271,9 @@ def generate_initial_distribution_from_tomo_manual_Twiss(parameters, TwissDict, 
 				xp[i] += closedOrbitx['xp0']
 				y[i] += closedOrbity['y0']
 				yp[i] += closedOrbity['yp0']
-				dpp = dE[i] / (parameters['energy']) / parameters['beta']**2 * 1E9
-				#print '\n dpp = ', dpp
+				dpp = (dE[i]/1E9) / (parameters['energy'] * parameters['beta']**2) # dE in GeV
+				print '\t dE = ', dE[i]
+				print '\t dpp = ', dpp
 				x[i] += dpp * dispersionx['etax0']
 				xp[i] += dpp * dispersionx['etapx0']	
 				y[i] += dpp * dispersiony['etay0']
@@ -357,7 +358,7 @@ def generate_initial_distribution_from_tomo(parameters, matfile=0, Lattice=None,
 	# Write the distn to a file only on one CPU
 	comm = orbit_mpi.mpi_comm.MPI_COMM_WORLD
 	if orbit_mpi.MPI_Comm_rank(comm) == 0:
-		
+                
 		with open(output_file,"w") as fid:
 			
 			csv_writer = csv.writer(fid, delimiter=' ')
@@ -371,8 +372,10 @@ def generate_initial_distribution_from_tomo(parameters, matfile=0, Lattice=None,
 				xp[i] += closedOrbitx['xp0']
 				y[i] += closedOrbity['y0']
 				yp[i] += closedOrbity['yp0']
-				dpp = dE[i] / (parameters['energy']) / parameters['beta']**2 * 1E9
-				#print '\n dpp = ', dpp
+				# ~ dpp = dE[i] / (parameters['energy']) / parameters['beta']**2 * 1E9
+				dpp = (dE[i]/1E9) / (parameters['energy'] * parameters['beta']**2) # dE in GeV
+				# ~ print '\t dE = ', dE[i]
+				# ~ print '\t dpp = ', dpp
 				x[i] += dpp * dispersionx['etax0']
 				xp[i] += dpp * dispersionx['etapx0']	
 				y[i] += dpp * dispersiony['etay0']
@@ -452,11 +455,14 @@ def generate_initial_distribution(parameters, Lattice,output_file = 'Input/Parti
 				xp[i] += closedOrbitx['xp0']
 				y[i] += closedOrbity['y0']
 				yp[i] += closedOrbity['yp0']
-				dpp = dE[i] / (parameters['energy']) / parameters['beta']**2
+				# ~ dpp = dE[i] / (parameters['energy']) / parameters['beta']**2
+				dpp = (dE[i]*1E3) / (parameters['energy'] * parameters['beta']**2) # dE in KeV
+				# ~ print '\t dE = ', dE[i]
+				# ~ print '\t dpp = ', dpp
 				x[i] += dpp * dispersionx['etax0']
-				xp[i] += dpp * dispersionx['etapx0']	
+				xp[i] += dpp * dispersionx['etapx0']
 				y[i] += dpp * dispersiony['etay0']
-				yp[i] += dpp * dispersiony['etapy0']	
+				yp[i] += dpp * dispersiony['etapy0']
 				
 				if outputFormat == 'Orbit':
 					x[i] *= 1000.
