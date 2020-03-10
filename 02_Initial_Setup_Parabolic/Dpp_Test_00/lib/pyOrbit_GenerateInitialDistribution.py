@@ -358,7 +358,9 @@ def generate_initial_distribution_from_tomo(parameters, matfile=0, Lattice=None,
 	# Write the distn to a file only on one CPU
 	comm = orbit_mpi.mpi_comm.MPI_COMM_WORLD
 	if orbit_mpi.MPI_Comm_rank(comm) == 0:
-		
+                
+# ~ def dpp_from_dE(dE, E, beta):
+    # ~ return (dE / (E * beta**2))
 		with open(output_file,"w") as fid:
 			
 			csv_writer = csv.writer(fid, delimiter=' ')
@@ -372,7 +374,8 @@ def generate_initial_distribution_from_tomo(parameters, matfile=0, Lattice=None,
 				xp[i] += closedOrbitx['xp0']
 				y[i] += closedOrbity['y0']
 				yp[i] += closedOrbity['yp0']
-				dpp = dE[i] / (parameters['energy']) / parameters['beta']**2 * 1E9
+				# ~ dpp = dE[i] / (parameters['energy']) / parameters['beta']**2 * 1E9
+				dpp = (dE[i]/1E9) / (parameters['energy'] * parameters['beta']**2) # dE in GeV
 				print '\t dE = ', dE[i]
 				print '\t dpp = ', dpp
 				x[i] += dpp * dispersionx['etax0']
@@ -454,7 +457,8 @@ def generate_initial_distribution(parameters, Lattice,output_file = 'Input/Parti
 				xp[i] += closedOrbitx['xp0']
 				y[i] += closedOrbity['y0']
 				yp[i] += closedOrbity['yp0']
-				dpp = dE[i] / (parameters['energy']) / parameters['beta']**2
+				# ~ dpp = dE[i] / (parameters['energy']) / parameters['beta']**2
+				dpp = (dE[i]/1E3) / (parameters['energy'] * parameters['beta']**2) # dE in KeV
 				print '\t dE = ', dE[i]
 				print '\t dpp = ', dpp
 				x[i] += dpp * dispersionx['etax0']
@@ -468,7 +472,7 @@ def generate_initial_distribution(parameters, Lattice,output_file = 'Input/Parti
 					y[i] *= 1000.
 					yp[i] *= 1000.
 					# ~ dE[i] /= 1.e9		
-					dE[i] /= 1.e6		# HR possible bug 10.03.20
+					dE[i] /= 1.e3		# HR possible bug 10.03.20
 					csv_writer.writerow([x[i], xp[i], y[i], yp[i], phi[i], dE[i]])
 				#csv_writer.writerow([x[i], xp[i], y[i], yp[i], z[i], dE[i]])
 		if summary_file:
