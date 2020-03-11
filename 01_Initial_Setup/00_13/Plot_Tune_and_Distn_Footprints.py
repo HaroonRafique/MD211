@@ -206,7 +206,7 @@ def gaussfromdist(particles, n_cut, bins_per_sigma = 10, ws_res = 0):
 # Limits: eps_z     = {0,4}
 
 # ~ a = int(os.getcwd()[-2])
-b = int(os.getcwd()[-1])
+# ~ b = int(os.getcwd()[-1])
 
 case = ['1p3', '1p6', '1p9', '2p3', '2p6']
 # ~ eps_z = [1.3, 1.6, 1.9, 2.3, 2.6]
