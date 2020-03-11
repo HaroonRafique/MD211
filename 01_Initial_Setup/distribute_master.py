@@ -1,19 +1,21 @@
 import shutil
 
-pyorbit = False
-simulation_parameters = False
-flat_files = False
-tune_files = False
-distn_gen = False
-tomo_files = True
+pyorbit                 = False
+simulation_parameters   = False
+flat_files              = False
+tune_files              = False
+distn_gen               = False
+tomo_files              = False
+bunch_plotting          = True
 
-master_directory = './00_Master'
-pyorbit_file = master_directory + '/pyOrbit.py'
-sim_params_file = master_directory + '/simulation_parameters.py'
-flat_file = master_directory + '/Flat_file.madx'
-tune_file = master_directory + '/tunes.str'
-distn_generator = master_directory + '/lib/pyOrbit_GenerateInitialDistribution.py'
-tomo_file = master_directory + '/Tomo_Files/'
+master_directory        = './00_Master'
+pyorbit_file            = master_directory + '/pyOrbit.py'
+sim_params_file         = master_directory + '/simulation_parameters.py'
+flat_file               = master_directory + '/Flat_file.madx'
+tune_file               = master_directory + '/tunes.str'
+distn_generator         = master_directory + '/lib/pyOrbit_GenerateInitialDistribution.py'
+tomo_file               = master_directory + '/Tomo_Files/'
+bunch_plotter           = master_directory + '/Plot_Tune_and_Distn_Footprints.py'
 
 tomo_list = [
         'PyORBIT_Tomo_file_2E12_1p3_eVs.mat',
@@ -87,4 +89,8 @@ if tomo_files:
                         loc_ = loc + '/Tomo_Files/'
                         newPath = shutil.copy(tomo_f, loc_)
                         print tomo_file, ' copied to ', loc_
-                
+
+if bunch_plotting:
+	for loc in locations:
+		newPath = shutil.copy(bunch_plotter, loc)
+		print bunch_plotter, ' copied to ', loc
