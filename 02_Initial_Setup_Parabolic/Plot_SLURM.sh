@@ -11,7 +11,7 @@
 #SBATCH --hint=nomultithread
 
 BATCH_ROOT_DIR=/hpcscratch/user/harafiqu
-RUN_DIR=/hpcscratch/user/harafiqu/MD211/021_Initial_Setup_Parabolic
+RUN_DIR=/hpcscratch/user/harafiqu/MD211/02_Initial_Setup_Parabolic
 OrigIwd=$(pwd)
 
 # Make an output folder in the root directory to hold SLURM info file
