@@ -229,9 +229,9 @@ Y_Profile = True
 tune_tit = '(6.21, 6.245)'
 tune_sav = '6p21_6p245' 
 sc = 'SbS'
-main_label = 'MD211_'+case[4]
+main_label = 'MD211_'+case[b]
 
-source_dir =  './01_04/bunch_output/'
+source_dir =  './bunch_output/'
 save_folder = source_dir
 
 master_bins = 512

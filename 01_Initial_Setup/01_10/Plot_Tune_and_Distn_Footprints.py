@@ -198,6 +198,20 @@ def gaussfromdist(particles, n_cut, bins_per_sigma = 10, ws_res = 0):
 
 # User settings
 #-----------------------------------------------------------------------
+# Folder name structure
+# 01_some_name_12
+# 01: Simulation specific case
+# 12: Intensity=1, eps_z=2
+# Limits: Intensity = {0,1}
+# Limits: eps_z     = {0,4}
+
+# ~ a = int(os.getcwd()[-2])
+b = int(os.getcwd()[-1])
+
+case = ['1p3', '1p6', '1p9', '2p3', '2p6']
+# ~ eps_z = [1.3, 1.6, 1.9, 2.3, 2.6]
+# ~ delta = [0.8E-3, 1.0E-3, 1.23E-3, 1.5E-3, 1.7E-3]
+# ~ voltages = [0.01225, 0.0189, 0.0304, 0.0455, 0.0591]
 
 print '\n\tPLOTTING SCRIPT: TUNE AND DISTRIBUTION FOOTPRINTS FROM PTC-PYORBIT BUNCH OUTPUT FILES: STARTED'
 
@@ -215,9 +229,9 @@ Y_Profile = True
 tune_tit = '(6.21, 6.245)'
 tune_sav = '6p21_6p245' 
 sc = 'SbS'
-main_label = 'MD211'
+main_label = 'MD211_'+case[0]
 
-source_dir =  './bunch_output/'
+source_dir =  './01_10/bunch_output/'
 save_folder = source_dir
 
 master_bins = 512
