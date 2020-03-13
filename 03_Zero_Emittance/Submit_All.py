@@ -6,7 +6,7 @@ SC_Scan = False
 master_dir = os.getcwd()
 
 NoSC_locations = []
-NoSC_locations.append('/00_00')
+#~ NoSC_locations.append('/00_00')
 NoSC_locations.append('/00_01')
 NoSC_locations.append('/00_02')
 NoSC_locations.append('/00_03')
