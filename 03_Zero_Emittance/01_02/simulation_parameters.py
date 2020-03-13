@@ -71,7 +71,7 @@ sc = [False, True]
 switches = {
 	'CreateDistn':		True,
 	'Update_Twiss':		False,  # Needed to save optics turn-by-turn
-	'Space_Charge': 	sc[c],
+	'Space_Charge': 	False,
 	'GridSizeX': 128,
 	'GridSizeY': 128,
 	'GridSizeZ': 64
