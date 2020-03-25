@@ -5,8 +5,8 @@ simulation_parameters   = False
 flat_files              = False
 tune_files              = False
 distn_gen               = False
-tomo_files              = False
-bunch_plotting          = True
+tomo_files              = True
+bunch_plotting          = False
 
 master_directory        = './00_Master'
 pyorbit_file            = master_directory + '/pyOrbit.py'
