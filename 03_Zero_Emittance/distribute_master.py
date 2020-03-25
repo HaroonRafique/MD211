@@ -1,5 +1,7 @@
 import shutil
 
+# Flags to select which files to copy from master to locations
+########################################################################
 pyorbit                 = False
 simulation_parameters   = True
 flat_files              = False
@@ -8,6 +10,8 @@ distn_gen               = False
 tomo_files              = False
 bunch_plotting          = False
 
+# Locations of master directory and common filenames
+########################################################################
 master_directory        = './00_Master'
 pyorbit_file            = master_directory + '/pyOrbit.py'
 sim_params_file         = master_directory + '/simulation_parameters.py'
@@ -30,6 +34,8 @@ tomo_list = [
         'PyORBIT_Tomo_file_1p6E12_1p3_eVs.mat',
 ]
 
+# Locations to copy to
+########################################################################
 locations = []
 
 locations.append('00_00')
