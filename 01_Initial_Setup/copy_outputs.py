@@ -61,7 +61,7 @@ NoSC_locations.append('./00_14')
 
 Intensities = ['1p6E12', '2E12']
 case = ['1p3', '1p6', '1p9', '2p3', '2p6']
-label = '200Grid'
+label = '512Grid'
 
 # Copy files
 ########################################################################
