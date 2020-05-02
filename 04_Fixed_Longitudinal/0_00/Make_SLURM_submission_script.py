@@ -24,7 +24,7 @@ queue = 'inf-short'
 n_nodes = 2 
 
 # first two digits of parent director, last two digits of current directory
-jobname = '21_'+str(os.getcwd().split('/')[-2][:2])+'_'+str(os.getcwd()[-2:])
+jobname = '04_'+str(os.getcwd().split('/')[-1][0])+'_'+str(os.getcwd()[-2:])
 
 path_to_simulation = os.path.dirname(os.path.realpath(__file__)) # This directory
 

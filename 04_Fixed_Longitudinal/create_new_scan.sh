@@ -1,6 +1,6 @@
 #!/bin/bash
 folder_in=00_Master
-folder_out=NoSC
+folder_out=1
 
 cp -r ${folder_in} ${folder_out}_00
 cp -r ${folder_in} ${folder_out}_01
