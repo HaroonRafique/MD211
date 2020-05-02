@@ -32,7 +32,8 @@ else:
 parameters['Beam']		= case[b]
 parameters['dpp_rms']		= delta[b]
 parameters['rf_voltage']	= voltages[b]
-parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+str_intensity+'_'+case[b]+'_eVs.mat'
+# ~ parameters['tomo_file']		='Tomo_Files/PyORBIT_Tomo_file_'+str_intensity+'_'+case[b]+'_eVs.mat'
+parameters['BLonD_file']='BLonD_Files/BLonD_Longitudinal_Distn' + str_intensity + '_' + case[b] +  '_eVs.npz'
 
 parameters['tunex']		= '619'
 parameters['tuney']		= '624'
