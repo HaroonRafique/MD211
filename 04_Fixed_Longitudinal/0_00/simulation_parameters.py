@@ -13,7 +13,7 @@ import numpy as np
 
 a = int(os.getcwd()[-2])
 b = int(os.getcwd()[-1])
-sc = int(os.getcwd()[0])
+sc = int(os.getcwd().split('/')[-1][0])
 
 case = ['1p3', '1p6', '1p9', '2p3', '2p6']
 eps_z = [1.3, 1.6, 1.9, 2.3, 2.6]
