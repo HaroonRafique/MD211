@@ -19,7 +19,7 @@ case = ['1p3', '1p6', '1p9', '2p3', '2p6']
 eps_z = [1.3, 1.6, 1.9, 2.3, 2.6]
 delta = [0.8E-3, 1.0E-3, 1.23E-3, 1.5E-3, 1.7E-3]
 # voltages = [0.01225, 0.0189, 0.0304, 0.0455, 0.0591]
-voltages_Low = [0.01735, 0.02157, 0.03311, 0.04821, 0.06172] # SC adjusted by empirical estimate low intensity
+voltages_Low = [0.01475, 0.02157, 0.03311, 0.04821, 0.06172] # SC adjusted by empirical estimate low intensity
 voltages_High = [0.01563, 0.02219, 0.03366, 0.04868, 0.06209] # SC adjusted by empirical estimate high intensity
     
 # parameters
