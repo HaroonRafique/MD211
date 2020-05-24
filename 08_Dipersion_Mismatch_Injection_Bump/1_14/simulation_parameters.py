@@ -43,7 +43,7 @@ parameters['Beam']		= case[b]
 parameters['dpp_rms']		= delta[b]
 
 parameters['BLonD_file']        = '../BLonD_Files/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[b] +  '_eVs.npz'
-parameters['LatticeFile']       = 'Injection_Bump/'+parameters['Run']+'_'+parameters['Beam']+'_injection_bump_0.ptc'
+parameters['LatticeFile']       = 'Injection_Bump/Run2_Standard_injection_bump_0.ptc'
 
 parameters['tunex']		= '619'
 parameters['tuney']		= '624'

@@ -5,6 +5,7 @@ TITLE, "Flat file generation for PTC-PyORBIT";
  **********************************************************************/
 
 quad_error = 0;	! Add quadrupolar error on QDN72
+distributed_quad_error = 0;	! Add quadrupolar error on all QDNs
 
 match_tunes = 0;
 use_pfw = 0;	!Match tunes with PFW or LEQ
@@ -49,7 +50,7 @@ endedit;
 
 seqedit, sequence=PS;
 	flatten;
-	!cycle , start=PR.BWSV85;
+	!cycle , start=PR.BWSV64;
 	cycle , start=PR.BWSH65;
 	flatten;
 endedit;
@@ -101,7 +102,7 @@ use, sequence=PS;
 ptc_create_universe;
 ptc_create_layout, time=false, model=propagation_method, method=order_of_integrator, nst=integration_steps_per_element, exact=true;
 select, flag=ptc_twiss, clear; 
-select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp3, x, px, y, py;
+select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp3, mux, muy, x, px, y, py;
 ptc_twiss, icase=5, no=map_order, closed_orbit, file=optimised_bare_simplified.tfs, table=ptc_twiss;
 ptc_end;
 
@@ -111,14 +112,9 @@ ptc_end;
  * Hannes Bartosik's JUAS 19' lecture on Linear Imperfections and
  * Correction: https://indico.cern.ch/event/779575/contributions/3244531/attachments/1782159/2905799/linearimperfections_2019.pdf
  **********************************************************************/
-IF(quad_error==1){
-	Delta_k := Beta_beating * 0.000510425;
 
-	EOPTION, ADD=false;
-	SELECT,FLAG=ERROR,CLEAR;
-	SELECT,FLAG=ERROR,PATTERN=PR.QDN72;
-	EFCOMP, DKN:={0,Delta_k,0}; 
-}
+IF(quad_error==1){EXEC, QDN78_error(beta_beating);}
+IF(distributed_quad_error==1){EXEC, distributed_qfn_error(beta_beating);}
 
 /**********************************************************************************
  *                        Matching using the PFW
@@ -149,70 +145,10 @@ Qxp2 := 49.71225;
 Qyp := -2.92869;
 Qyp2 := 4.99208;
 
-! Override existing macro in macros file due to bug when using MAD-X 5.02
-ptc_twiss_macro(order): macro = {
-	select, flag=ptc_twiss, column=name,keyword,s,x,px,y,py,t,pt,beta11,alfa11,beta22,alfa22,disp1,disp2,disp3,disp4,gamma11,gamma22,mu1,mu2,energy,l,angle,K0L,K0SL,K1L,K1SL,K2L,K2SL,K3L,K3SL,K4L,K4SL,K5L,K5SL,VKICK,HKICK,SLOT_ID;
-	ptc_create_universe;
-	ptc_create_layout, time=false, model=2, exact=true, method=6, nst=3;
-	ptc_twiss, closed_orbit, icase=56, no=order, table=ptc_twiss, summary_table=ptc_twiss_summary;  
-	ptc_end;
-};
-
-match_Tunes(PFW_flag, QQx, QQy): macro={
-	IF(PFW_flag == 0){
-	print, text = "/***************************************************";
-	print, text = "  Matching Tune using Low Energy Quads";
-	print, text = "/***************************************************";
- 	match, use_macro;
-		vary, name = kf, step=1.0E-6 ;
-		vary, name = kd, step=1.0E-6 ;
-		use_macro, name = ptc_twiss_macro(2);
-		constraint, expr = table(ptc_twiss_summary,q1)  = QQx;
-		constraint, expr = table(ptc_twiss_summary,q2)  = QQy;
-	jacobian,calls=50000,bisec=3;
-	ENDMATCH;
-	}
-	ELSEIF(PFW_flag == 1){
-	print, text = "/***************************************************";
-	print, text = "  Matching Tune using Pole Face Windings";
-	print, text = "/***************************************************";
-	match, use_macro;
-		vary, name = pfwk1_f;
-		vary, name = pfwk1_d;
-		use_macro, name = ptc_twiss_macro(2);
-		constraint, expr = table(ptc_twiss_summary,q1)  = QQx;
-		constraint, expr = table(ptc_twiss_summary,q2)  = QQy;
-	jacobian,calls=50000,bisec=3;
-	ENDMATCH;
-	}
-	value, kf, kd, pfwk1_f, pfwk1_d;
-};
-
-match_Chroma_PFW(QQxp, QQyp, QQxp2, QQyp2): macro={
-	print, text = "/***************************************************";
-	print, text = "  Matching Chromaticity using Pole Face Windings";
-	print, text = "/***************************************************";
-	match, use_macro;
-		vary, name = pfwk2_f;
-		vary, name = pfwk2_d;
-		vary, name = pfwk3_f;
-		vary, name = pfwk3_d;
-		use_macro, name = ptc_twiss_macro(2);
-		constraint, expr = table(ptc_twiss_summary,dq1) = QQxp;
-		constraint, expr = table(ptc_twiss_summary,dq2) = QQyp;
-		! These require the `normal' ptc_twiss flag which doesn't seem to work with MAD-X 5.02
-		!constraint, expr = table(nonlin,value,5)  = QQxp2;
-		!constraint, expr = table(nonlin,value,10) = QQyp2;
-	jacobian,calls=50000,bisec=3;
-	ENDMATCH;
-	value, pfwk2_f, pfwk2_d, pfwk3_f, pfwk3_d;
-};
-
 IF(match_tunes==1){EXEC, match_Tunes(use_pfw, tune_x, tune_y);}
 IF(match_chroma==1){EXEC, match_Chroma_PFW(Qxp, Qyp, Qxp2, Qyp2);}
 
 value, tune_x, tune_y, Qxp, Qyp; 
-
 
 /***********************************************************************
  * Next we use the PTC script resplit.ptc - this is used to split
@@ -238,12 +174,12 @@ plot, table=ptc_twiss, haxis=s, vaxis=bety, hmin=0, hmax=630, vmin=10, vmax=30, 
 plot, table=ptc_twiss, haxis=s, vaxis=disp1, hmin=0, hmax=630, vmin=2.2, vmax=3.8, title='Horizontal Dispersion', colour=2, NOLINE=False, NOVERSION=False;
 ! Horizontal Scan
 !plot, table=ptc_twiss, haxis=s, vaxis=disp1, hmin=0, hmax=630, vmin=1.0, vmax=5.5, title='Horizontal Dispersion', colour=2, NOLINE=False, NOVERSION=False;
-plot, table=ptc_twiss, haxis=s, vaxis=disp2, hmin=0, hmax=630, vmin=-0.6, vmax=-0.6,  title='Horizontal Dispersion Prime', colour=4, NOLINE=False, NOVERSION=False;
+plot, table=ptc_twiss, haxis=s, vaxis=disp2, hmin=0, hmax=630, vmin=-0.6, vmax=-0.6,  title='Horizontal Dispersion Prime', colour=2, NOLINE=False, NOVERSION=False;
 plot, table=ptc_twiss, haxis=s, vaxis=x, hmin=0, hmax=630, title='x', colour=2, NOLINE=False, NOVERSION=False;
 plot, table=ptc_twiss, haxis=s, vaxis=y, hmin=0, hmax=630, title='y', colour=4, NOLINE=False, NOVERSION=False;
 plot, table=ptc_twiss, haxis=s, vaxis=px, hmin=0, hmax=630, title='px', colour=2, NOLINE=False, NOVERSION=False;
 plot, table=ptc_twiss, haxis=s, vaxis=py, hmin=0, hmax=630, title='py', colour=4, NOLINE=False, NOVERSION=False;
-plot, table=ptc_twiss, haxis=s, vaxis=disp3, hmin=0, hmax=630, title='Vertical Dispersion Prime', colour=2, NOLINE=False, NOVERSION=False;
+plot, table=ptc_twiss, haxis=s, vaxis=disp3, hmin=0, hmax=630, title='Vertical Dispersion', colour=2, NOLINE=False, NOVERSION=False;
 plot, table=ptc_twiss, haxis=s, vaxis=disp4, hmin=0, hmax=630, title='Vertical Dispersion Prime', colour=4, NOLINE=False, NOVERSION=False;
 
 value, kf, kd, pfwk1_f, pfwk1_d, pfwk2_f, pfwk2_d, pfwk3_f, pfwk3_d;
