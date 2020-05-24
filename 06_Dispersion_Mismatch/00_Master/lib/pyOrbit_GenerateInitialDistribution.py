@@ -775,10 +775,17 @@ def generate_initial_distribution_from_BLonD(parameters, Lattice=None, output_fi
                         # ~ print 'ERROR: pyOrbit_GenerateInitialDistribution::generate_initial_distribution_from_BLonD'
                         # ~ print parameters['BLonD_file'], ' does not contain enough particles to fill the bunch co-ordinates'
                         # ~ exit(0)
-                        
+        
+        if len(BLonD_data['dz']) <= (parameters['n_macroparticles']-1):
+                print 'generate_initial_distribution_from_BLonD::Error: input array length', len(BLonD_data['dz']), ' does not meet number of requested particles', parameters['n_macroparticles']
+                exit(0)
+        if len(BLonD_data['dE']) <= (parameters['n_macroparticles']-1):
+                print 'generate_initial_distribution_from_BLonD::Error: input file length', len(BLonD_data['dE']), ' does not meet number of requested particles', parameters['n_macroparticles']
+                exit(0)
+
         z = BLonD_data['dz']
         dE = (BLonD_data['dE']/ 1E9)
-                        
+
 	# We need to convert z into phi
 	h_main = np.atleast_1d(parameters['harmonic_number'])[0]
 	R = parameters['circumference'] / 2 / np.pi
@@ -886,6 +893,13 @@ def generate_initial_distribution_from_BLonD_manual_Twiss(parameters, TwissDict,
                         # ~ print parameters['BLonD_file'], ' does not contain enough particles to fill the bunch co-ordinates'
                         # ~ exit(0)
                         
+        if len(BLonD_data['dz']) <= (parameters['n_macroparticles']-1):
+                print 'generate_initial_distribution_from_BLonD::Error: input array length', len(BLonD_data['dz']), ' does not meet number of requested particles', parameters['n_macroparticles']
+                exit(0)
+        if len(BLonD_data['dE']) <= (parameters['n_macroparticles']-1):
+                print 'generate_initial_distribution_from_BLonD::Error: input file length', len(BLonD_data['dE']), ' does not meet number of requested particles', parameters['n_macroparticles']
+                exit(0)
+                
         z = BLonD_data['dz']
         dE = (BLonD_data['dE']/ 1E9)
                         
