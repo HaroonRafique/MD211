@@ -197,8 +197,8 @@ if sts['turn'] < 0:
                 print '\n\tDISPERSION MISMATCH ENABLED'
                 print '\t D_x_Lattice =', Lattice.etax0, ' m'
                 print '\t D_xp_Lattice =', Lattice.etapx0, ''
-                twiss_dict['D_x'] 	= Lattice.etax0 + 0.282
-                twiss_dict['D_xp'] 	= Lattice.etapx0 + 0.103
+                twiss_dict['D_x'] 	= Lattice.etax0 + 0.283
+                # ~ twiss_dict['D_xp'] 	= Lattice.etapx0 + 0.102961
                 # ~ print '\t D_x_Mismatched =', twiss_dict['D_x'], ' m'
                 # ~ print '\t D_xp_Mismatched =', twiss_dict['D_xp'], ''
         
