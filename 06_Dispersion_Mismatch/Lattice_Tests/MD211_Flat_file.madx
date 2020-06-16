@@ -101,7 +101,7 @@ use, sequence=PS;
 ptc_create_universe;
 ptc_create_layout, time=false, model=propagation_method, method=order_of_integrator, nst=integration_steps_per_element, exact=true;
 select, flag=ptc_twiss, clear; 
-select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp3, x, px, y, py;
+select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp3, x, px, y, py, mux, muy;
 ptc_twiss, icase=5, no=map_order, closed_orbit, file=MD211.tfs, table=ptc_twiss;
 ptc_end;
 
@@ -226,7 +226,7 @@ ptc_create_layout,time=true, model=propagation_method, exact=true, method=order_
 ptc_script, file="./PTC/resplit.ptc";
 ptc_script, file="./PTC/print_flat_file.ptc";
 select, flag=ptc_twiss, clear; 
-select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp2, disp3, disp4, x, px, y, py;
+select, flag=ptc_twiss, column=name, s, betx, bety, alfx, alfy, disp1, disp2, disp3, disp4, x, px, y, py, mux, muy;
 ptc_twiss, icase=5, no=map_order, deltap_dependency, closed_orbit, file=MD211_final.tfs, table=ptc_twiss;
 ptc_end;
 
