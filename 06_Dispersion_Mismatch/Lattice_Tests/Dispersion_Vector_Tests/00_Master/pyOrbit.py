@@ -190,7 +190,7 @@ if sts['turn'] < 0:
 		elif s['Optics'] is 'Rematched':
 			Dx  = Lattice.etax0#2.6829
 			Dxp = Lattice.etapx0*14 #-0.1104
-        print '\n Dispersion mismatch: Dx = ',Dx,'\nDispersion mismatch Dxp = ',Dxp
+                print '\n Dispersion mismatch: Dx = ',Dx,'\nDispersion mismatch Dxp = ',Dxp
 
 
 		print '\n\t\tgenerate_initial_distribution on MPI process: ', rank
