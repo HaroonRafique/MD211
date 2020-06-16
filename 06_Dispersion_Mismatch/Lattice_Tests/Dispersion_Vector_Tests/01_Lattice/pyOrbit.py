@@ -186,10 +186,10 @@ if sts['turn'] < 0:
 			Dxp = Lattice.etapx0
 		elif s['Optics'] is 'Operational':
 			Dx  = 3.468 # Lattice.etax0 #2.633
-			Dxp = Lattice.etapx0*14 #-0.1104
+			Dxp = Lattice.etapx0#-0.1104
 		elif s['Optics'] is 'Rematched':
 			Dx  = Lattice.etax0#2.6829
-			Dxp = Lattice.etapx0#-0.0221
+			Dxp = Lattice.etapx0*14 #-0.1104
 
 
 		print '\n\t\tgenerate_initial_distribution on MPI process: ', rank
