@@ -129,8 +129,8 @@ write_RFtable('input/RF_table.ptc', *[RF[k] for k in ['harmonic_factors','time',
 
 # Initialize a Teapot-Style PTC lattice
 #-----------------------------------------------------------------------
-print '\n\t\tRead PTC flat file: ',p['flat_file'],' on MPI process: ', rank
-PTC_File = p['flat_file']
+print '\n\t\tRead PTC flat file: PTC-PyORBIT_flat_file.flt on MPI process: ', rank
+PTC_File = 'PTC-PyORBIT_flat_file.flt'
 Lattice = PTC_Lattice("PS")
 Lattice.readPTC(PTC_File)
 
