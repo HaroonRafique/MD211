@@ -9,6 +9,7 @@ TITLE, "Flat file generation for PTC-PyORBIT";
 call, file="New_Lattice/ps_mu.seq";
 call, file="New_Lattice/ps_ss.seq";
 call, file="New_Lattice/ps.str";
+call, file="New_Lattice/ps_inj_lhc.str";
 call, file="New_Lattice/macros.ptc";
 
 /***********************************************************************
