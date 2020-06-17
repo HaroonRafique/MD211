@@ -108,7 +108,8 @@ else:
 print '\nStart MADX on MPI process: ', rank
 if not rank:        
         # ~ madx_command = '/afs/cern.ch/eng/sl/MAD-X/pro/releases/5.02.00/madx-linux64 < MD211_Flat_file.madx'
-        madx_command = '/afs/cern.ch/eng/sl/MAD-X/pro/releases/5.02.00/madx-linux64 < PS_Transfer_flat_file.madx'
+        # ~ madx_command = '/afs/cern.ch/eng/sl/MAD-X/pro/releases/5.02.00/madx-linux64 < PS_Transfer_flat_file.madx'
+        madx_command = '/afs/cern.ch/eng/sl/MAD-X/pro/releases/5.02.00/madx-linux64 < 01_Create_Flat_File.madx'
 	os.system(madx_command)
 orbit_mpi.MPI_Barrier(comm)
 
