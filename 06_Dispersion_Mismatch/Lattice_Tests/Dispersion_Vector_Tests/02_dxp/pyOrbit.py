@@ -189,7 +189,7 @@ if sts['turn'] < 0:
 			Dxp = Lattice.etapx0#-0.1104
 		elif s['Optics'] is 'Rematched':
 			Dx  = 4.781 # Lattice.etax0#2.6829
-			Dxp = Lattice.etapx0*15 #-0.1104
+			Dxp = Lattice.etapx0# *15 #-0.1104
                 print '\n Dispersion mismatch: Dx = ',Dx,'\nDispersion mismatch Dxp = ',Dxp
 
 
