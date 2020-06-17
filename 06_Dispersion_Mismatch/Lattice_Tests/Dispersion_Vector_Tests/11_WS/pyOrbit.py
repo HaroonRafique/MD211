@@ -195,7 +195,7 @@ if sts['turn'] < 0:
 			Dx  = 2.633
 			Dxp = -0.1104
 		elif s['Optics'] is 'BWSH65':
-			Dx  = 3.468
+			Dx  = 4.781
 			Dxp = Lattice.etapx0
                 print '\n Dispersion mismatch: Dx = ',Dx,'\nDispersion mismatch Dxp = ',Dxp
 
