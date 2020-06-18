@@ -42,8 +42,13 @@ else:
 parameters['Beam']		= case[b]
 parameters['dpp_rms']		= delta[b]
 
-parameters['BLonD_file']='../BLonD_Files/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[b] +  '_eVs.npz'
+if sc is 1:
+        parameters['BLonD_file']='../BLonD_Files_SC/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[b] +  '_eVs.npz'
+else:
+        parameters['BLonD_file']='../BLonD_Files/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[b] +  '_eVs.npz'
 
+        
+        
 parameters['tunex']		= '619'
 parameters['tuney']		= '624'
 

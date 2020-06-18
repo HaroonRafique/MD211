@@ -1,7 +1,7 @@
 import os
 
 NoSC_Scan = True
-SC_Scan = False
+SC_Scan = True
 
 master_dir = os.getcwd()
 
