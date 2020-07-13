@@ -79,9 +79,9 @@ parameters['Beam']		= case[Longitudinal_Emittance]
 parameters['dpp_rms']		= delta[Longitudinal_Emittance]
 
 if sc is 1:
-        parameters['BLonD_file']='../BLonD_Files_SC/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[Longitudinal_Emittance] +  '_eVs.npz'
+        parameters['BLonD_file']='../../06_Dispersion_Mismatch/BLonD_Files_SC/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[Longitudinal_Emittance] +  '_eVs.npz'
 else:
-        parameters['BLonD_file']='../BLonD_Files/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[Longitudinal_Emittance] +  '_eVs.npz'
+        parameters['BLonD_file']='../../06_Dispersion_Mismatch/BLonD_Files/BLonD_Longitudinal_Distn_' + str_intensity + '_' + case[Longitudinal_Emittance] +  '_eVs.npz'
 
         
 parameters['tunex']		= '619'
